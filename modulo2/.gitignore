@@ -1,0 +1,9 @@
+dados_locais/
+__pycache__/
+*.pyc
+*.sqlite3
+*.db
+.segredo_sessao*
+.venv/
+.pytest_cache/
+.env
