@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-panel"><h2>Informações do cliente</h2><p class="muted">Utilize apenas dados fictícios durante os testes acadêmicos.</p>
+ <form method="post" action="/clientes/salvar" class="form-grid">
+ <input type="hidden" name="csrf" value="{{ csrf }}"><input type="hidden" name="id" value="{{ item.id|default('',true) }}">
+ <div class="field wide"><label for="nome">Nome / razão social *</label><input id="nome" name="nome" required minlength="2" value="{{ item.nome|default('',true) }}"></div>
+ <div class="field"><label for="tipo">Tipo de pessoa</label><select id="tipo" name="tipo_pessoa">{% for value,label in [('fisica','Pessoa física'),('juridica','Pessoa jurídica'),('estrangeira','Estrangeira')] %}<option value="{{ value }}" {% if item.tipo_pessoa|default('fisica',true)==value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+ <div class="field"><label for="documento">CPF / CNPJ (opcional)</label><input id="documento" name="documento" inputmode="numeric" value="{{ item.documento|default('',true) }}"></div>
+ <div class="field"><label for="email">E-mail</label><input id="email" type="email" name="email" value="{{ item.email|default('',true) }}"></div>
+ <div class="field"><label for="telefone">Telefone</label><input id="telefone" name="telefone" value="{{ item.telefone|default('',true) }}"></div>
+ <div class="field"><label for="cidade">Cidade</label><input id="cidade" name="cidade" value="{{ item.cidade|default('',true) }}"></div>
+ <div class="field"><label for="uf">UF</label><input id="uf" name="uf" maxlength="2" value="{{ item.uf|default('',true) }}"></div>
+ <div class="field wide actions"><button type="submit" class="button primary">Salvar cliente</button><a href="/clientes" class="button secondary">Cancelar</a></div>
+ </form>
+</section>
+{% endblock %}

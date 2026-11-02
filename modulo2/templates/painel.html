@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="metrics" aria-label="Indicadores de cadastros">
+  <a class="stat" href="/clientes"><span>Clientes cadastrados</span><strong>{{ stats.clientes }}</strong><small>Ver clientes →</small></a>
+  <a class="stat" href="/produtos"><span>Produtos cadastrados</span><strong>{{ stats.produtos }}</strong><small>Ver produtos →</small></a>
+  <a class="stat" href="/produtos"><span>Preços para revisar</span><strong>{{ stats.sem_preco }}</strong><small>Verificar dados →</small></a>
+  <a class="stat" href="/privacidade"><span>Ocorrências abertas</span><strong>{{ stats.ocorrencias }}</strong><small>Acompanhar →</small></a>
+</section>
+<div class="grid-two">
+<section class="panel">
+ <h2>Acesso rápido</h2><p class="muted">Continue um cadastro ou consulte as informações já registradas.</p>
+ <div class="action-list"><a class="button primary" href="/produtos/novo">+ Cadastrar produto</a><a class="button secondary" href="/clientes/novo">+ Cadastrar cliente</a><a class="button secondary" href="/produtos">Pesquisar produtos</a></div>
+</section>
+<section class="panel">
+ <h2>O que mudou nesta versão?</h2>
+ <p>As páginas foram separadas em modelos HTML, com CSS responsivo, rotas organizadas em um framework e busca dinâmica que atualiza a lista enquanto você digita.</p>
+ <p class="fine">O funcionamento continua local, sem comunicação com sistemas externos. A impressão matricial e a migração do Space ainda precisam ser validadas.</p>
+</section>
+</div>
+{% endblock %}

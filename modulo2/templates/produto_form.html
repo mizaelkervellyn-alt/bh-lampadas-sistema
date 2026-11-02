@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-panel">
+ <h2>Informações do produto</h2><p class="muted">Os campos marcados com * são obrigatórios.</p>
+ <form method="post" action="/produtos/salvar" class="form-grid">
+  <input type="hidden" name="csrf" value="{{ csrf }}"><input type="hidden" name="id" value="{{ item.id|default('',true) }}">
+  <div class="field"><label for="codigo">Código / SKU *</label><input id="codigo" name="codigo_space" required maxlength="60" value="{{ item.codigo_space|default('',true) }}"></div>
+  <div class="field wide"><label for="descricao">Descrição *</label><input id="descricao" name="descricao" required minlength="2" maxlength="240" value="{{ item.descricao|default('',true) }}"></div>
+  <div class="field"><label for="grupo">Categoria</label><input id="grupo" name="grupo" list="grupos" maxlength="80" value="{{ item.grupo|default('',true) }}"><datalist id="grupos">{% for g in grupos %}<option value="{{ g.nome }}">{% endfor %}</datalist></div>
+  <div class="field"><label for="unidade">Unidade</label><input id="unidade" name="unidade" maxlength="10" value="{{ item.unidade|default('UN',true) }}"></div>
+  <div class="field"><label for="preco">Preço (R$)</label><input id="preco" name="preco" inputmode="decimal" placeholder="Ex.: 29,90" value="{{ item.preco|default('',true) }}"><small>Deixe em branco se ainda precisar confirmar.</small></div>
+  <div class="field wide actions"><button class="button primary" type="submit">Salvar produto</button><a class="button secondary" href="/produtos">Cancelar</a></div>
+ </form>
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>{{ title }} · BH Lâmpadas</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', path='favicon_bh.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='modulo2.css') }}">
+  <script defer src="{{ url_for('static', path='modulo2.js') }}"></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="topbar">
+ <a class="brand" href="/" aria-label="BH Lâmpadas — ir para o painel"><img class="brand-logo" src="{{ url_for('static', path='logo_bh_lampadas.png') }}" width="217" height="58" alt="BH Lâmpadas — Especiais e Iluminação"></a>
+ <div class="top-actions"><span class="tag">Protótipo local · Módulo 2</span>{% if user %}<span class="user-name">{{ user.nome }}</span><form method="post" action="/sair"><input type="hidden" name="csrf" value="{{ csrf }}"><button class="link-button" type="submit">Sair</button></form>{% endif %}</div>
+</header>
+<div class="app-shell">
+{% if user %}
+<nav class="sidebar" aria-label="Navegação principal">
+  <span class="nav-title">MENU</span>
+  <a href="/" {% if title=='Visão geral' %}aria-current="page"{% endif %}>Painel</a>
+  <a href="/produtos" {% if title in ['Produtos','Novo produto','Editar produto'] %}aria-current="page"{% endif %}>Produtos</a>
+  <a href="/clientes" {% if title in ['Clientes','Novo cliente','Editar cliente'] %}aria-current="page"{% endif %}>Clientes</a>
+  <a href="/privacidade" {% if title=='Privacidade' %}aria-current="page"{% endif %}>Ética digital</a>
+  <div class="side-note">Sistema local de demonstração. Não emite NF-e nem envia dados ao Bling.</div>
+</nav>
+{% endif %}
+<main id="conteudo" class="content{% if not user %} guest{% endif %}">
+ <div class="page-heading"><div><p class="overline">PROJETO INTEGRADOR II / BH LÂMPADAS</p><h1>{{ title }}</h1></div></div>
+ {% if message %}<div class="alert success" role="status">{{ message }}</div>{% endif %}
+ {% if error %}<div class="alert error" role="alert">{{ error }}</div>{% endif %}
+ {% if user %}<div class="warning-note">Ambiente acadêmico: use apenas informações fictícias. O protótipo não substitui o Space ou o Bling.</div>{% endif %}
+ {% block content %}{% endblock %}
+ <footer>BH Lâmpadas · Protótipo acadêmico local · Projeto Integrador II (2026)</footer>
+</main>
+</div>
+</body>
+</html>
