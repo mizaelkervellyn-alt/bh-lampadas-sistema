@@ -1,0 +1,9 @@
+[OK 1] Oito tabelas criadas pelo schema.sql publicado
+[OK 2] Sete chaves estrangeiras e integridade referencial habilitada
+[OK 3] INSERT + SELECT JOIN para produtos e grupos
+[OK 4] UPDATE recuperado em consulta SQL
+[OK 5] UNIQUE impede código de produto duplicado
+[OK 6] CHECK impede preço negativo
+[OK 7] FOREIGN KEY impede referência inexistente
+[OK 8] DELETE executado e exclusão confirmada
+RESULTADO: 8 verificações concluídas; banco temporário descartado.
