@@ -1,82 +1,192 @@
 
+
 # BH Lâmpadas | Sistema de Gestão
 
-Protótipo desenvolvido para o Projeto Integrador de Tecnologia da Informação da Universidade Federal de Mato Grosso do Sul (UFMS).
+Sistema de gestão desenvolvido para a BH Lâmpadas, como parte do Projeto Integrador de Tecnologia da Informação da Universidade Federal de Mato Grosso do Sul (UFMS).
 
 ## Sobre o projeto
 
-O projeto busca desenvolver um sistema de gestão para a BH Lâmpadas, uma loja de Belo Horizonte que utiliza o Space Informática para controlar produtos, clientes e vendas.
+O projeto surgiu da necessidade de modernizar os processos da BH Lâmpadas, uma loja de Belo Horizonte que utiliza o Space Informática para gerenciar produtos, clientes e vendas, enquanto o Bling é utilizado para emitir notas fiscais.
 
-A proposta surgiu da necessidade de modernizar esse processo, reduzir o retrabalho causado pelo uso de sistemas diferentes e facilitar as atividades diárias da responsável pela loja.
+A proposta é desenvolver uma solução mais prática para a rotina da loja, reduzindo tarefas repetitivas e facilitando a organização das informações.
 
-O sistema ainda é um protótipo web local, mas a intenção é desenvolver uma versão final que possa ser instalada no computador da empresa.
+Inicialmente, foi desenvolvido um protótipo web local. Durante o Projeto Integrador II, o sistema evoluiu com a utilização de um framework, melhorias na interface, organização do banco de dados e criação de uma versão desktop experimental.
 
-## Funcionalidades disponíveis
+Atualmente, o projeto está na versão desktop **v0.2.1**, que já foi executada e testada no Windows 11, mas ainda não está pronta para substituir os sistemas utilizados pela empresa.
 
-O protótipo permite cadastrar, editar e pesquisar produtos e clientes, organizar produtos por categorias e identificar preços zerados ou não informados.
+## Funcionalidades desenvolvidas
 
-Também permite exportar informações em CSV, realizar a leitura experimental de arquivos TXT do Space, registrar ocorrências relacionadas à privacidade e gerar cópias de segurança.
+O sistema permite cadastrar, editar e pesquisar clientes e produtos, organizar produtos por categorias, controlar preços e exportar informações em CSV.
 
-O acesso é protegido por usuário e senha, e as informações são armazenadas localmente.
+Na versão desktop, foram acrescentadas novas funcionalidades:
+
+- Registro e consulta de pedidos de venda.
+- Cálculo automático dos valores dos pedidos.
+- Visualização e impressão de pedidos pelo Windows.
+- Exportação de pedidos em TXT para testes com impressora matricial.
+- Controle de contas a receber.
+- Identificação de clientes com cobranças vencidas.
+- Registro de pagamentos parciais e integrais.
+- Atualização dos saldos de cobranças.
+- Armazenamento local das informações em SQLite.
+
+O sistema também possui autenticação por senha e recursos acadêmicos relacionados à proteção de dados.
 
 ## Tecnologias utilizadas
 
-Python para desenvolver as funcionalidades do sistema.
+**Python:** desenvolvimento das funcionalidades e regras do sistema.
 
-HTML e CSS para a estrutura e aparência da interface.
+**FastAPI:** framework utilizado para organizar a aplicação.
 
-SQLite para armazenar as informações em um banco de dados local.
+**HTML, CSS e JavaScript:** estruturação, estilização responsiva e recursos dinâmicos da interface.
 
-O protótipo utiliza recursos nativos do Python, sem depender de frameworks externos.
+**SQLite:** armazenamento local dos dados.
 
-## Como executar
+**Jinja2:** organização das páginas HTML.
 
-É necessário ter Python 3.8 ou superior instalado.
+**pywebview:** apresentação da aplicação em uma janela própria no Windows.
 
-Primeiro, baixe o repositório pela opção Code > Download ZIP e extraia os arquivos.
+**Git e GitHub:** controle de versões e documentação do desenvolvimento.
 
-Depois, abra a pasta do projeto e execute o arquivo INICIAR_WINDOWS.bat.
+O protótipo inicial utilizava recursos nativos do Python, enquanto as versões posteriores incorporaram frameworks e novas funcionalidades.
 
-No navegador, acesse:
+## Organização do repositório
 
-http://127.0.0.1:8765
+O repositório preserva as diferentes etapas do desenvolvimento.
 
-No primeiro acesso, crie a conta de administrador e uma senha com pelo menos 10 caracteres.
+### Protótipo inicial
 
-Nos próximos acessos, utilize o usuário admin e a senha cadastrada.
+Arquivos da primeira versão, disponíveis na estrutura principal do repositório.
 
-Também é possível iniciar o programa pelo terminal com o comando:
+### Módulo 2
 
-`python app.py`
+Aplicação web desenvolvida com FastAPI, HTML, CSS, JavaScript e SQLite.
 
-## Testes
+Pasta: `modulo2/`
 
-O projeto possui testes automatizados para verificar funcionalidades como login, cadastros, exportação de arquivos e armazenamento de informações.
+### Módulo 3
 
-Para executar os testes, utilize:
+Modelagem do banco de dados, operações SQL e testes de integridade.
 
-`python testes_automaticos.py`
+Pasta: `modulo3/`
 
-Os testes utilizam dados fictícios e não alteram o banco de dados principal do usuário.
+### Desktop experimental v0.2.1
+
+Versão desktop com pedidos, impressão e contas a receber.
+
+Pasta: `desktop_v021/`
+
+### Módulo 4
+
+Testes e garantia de qualidade, com resultados automatizados e evidências do funcionamento no Windows.
+
+Pasta: `modulo4/`
+
+Essa organização permite acompanhar a evolução do projeto sem perder os trabalhos anteriores.
+
+## Como executar a versão desktop
+
+Para executar a versão experimental, é necessário ter o Python e as dependências do projeto instalados.
+
+1. Baixe o repositório pela opção **Code > Download ZIP**.
+2. Extraia os arquivos no computador.
+3. Abra a pasta `desktop_v021`.
+4. Execute o arquivo `INICIAR_DESKTOP_WINDOWS.bat`.
+5. Aguarde a preparação do ambiente na primeira execução.
+6. O sistema deverá abrir em uma janela própria no Windows.
+
+A versão atual ainda depende de um ambiente Python. A geração e os testes de um executável independente e de um instalador serão realizados posteriormente.
+
+O protótipo inicial continua disponível por meio do arquivo `INICIAR_WINDOWS.bat`, localizado na pasta principal.
+
+## Testes e garantia de qualidade
+
+Durante o Módulo 4, foram realizados testes automatizados e manuais para avaliar o funcionamento e a confiabilidade do sistema.
+
+A bateria automatizada da versão desktop v0.2.1 apresentou **14 testes aprovados e nenhuma falha**, no ambiente de desenvolvimento.
+
+Também foram realizados testes manuais no Windows 11, utilizando dados fictícios.
+
+### Testes manuais realizados
+
+- Cadastro de produtos e clientes.
+- Criação de pedido a prazo.
+- Identificação de cobrança vencida.
+- Registro de pagamento parcial.
+- Quitação da cobrança.
+- Atualização do alerta de inadimplência.
+- Visualização do pedido para impressão.
+- Abertura da caixa de impressão do Windows.
+- Salvamento do pedido em formato TXT.
+
+### Correção identificada durante os testes
+
+Durante a validação manual, foi identificada uma falha no download do arquivo TXT na versão v0.2.
+
+O problema foi corrigido na versão v0.2.1, com a implementação de uma opção de salvamento pelo próprio Windows.
+
+Após a correção, o arquivo TXT foi gerado e salvo corretamente.
+
+As evidências dos testes estão disponíveis na pasta `modulo4/`.
 
 ## Segurança e privacidade
 
-O programa armazena os dados localmente na pasta dados_locais, que não deve ser publicada no GitHub.
+O sistema utiliza armazenamento local, autenticação por senha e mecanismos de proteção de formulários.
 
-O protótipo deve ser utilizado com dados fictícios, pois ainda não passou pelas validações necessárias para operar com informações reais da empresa.
+Os testes acadêmicos são realizados com informações fictícias.
 
-## Próximas etapas
+Bancos de dados locais, senhas, arquivos de sessão e informações reais de clientes não devem ser publicados no GitHub.
 
-Durante o Projeto Integrador II, a proposta é melhorar a interface, ampliar as funcionalidades de pedidos e desenvolver novos recursos para facilitar o trabalho da loja.
-
-Também será necessário testar a impressão dos pedidos na impressora matricial, avaliar a migração dos dados do Space e verificar a compatibilidade dos arquivos exportados com o Bling.
-
-O objetivo futuro é disponibilizar um sistema instalado no computador da empresa, sem depender da abertura manual pelo navegador.
+A aplicação ainda precisa passar por avaliações adicionais antes de ser utilizada com dados reais da empresa.
 
 ## Situação atual
 
-O projeto está em desenvolvimento e ainda não substitui o Space Informática nem o Bling.
+A versão desktop experimental v0.2.1 já permite demonstrar funcionalidades de cadastro, pedidos, impressão e contas a receber.
 
-O protótipo não emite notas fiscais e não realiza sincronização automática entre os sistemas.
+Entretanto, o sistema ainda não substitui o Space Informática ou o Bling.
 
-As próximas melhorias serão desenvolvidas e testadas conforme as necessidades identificadas na BH Lâmpadas.
+A aplicação não emite notas fiscais, não realiza sincronização automática com esses programas e ainda não foi implantada na loja.
+
+A impressão pelo Windows e o salvamento de pedidos em TXT foram testados, mas a impressão física na Epson LQ-1070+ ainda precisa ser validada.
+
+## Próximas etapas
+
+As próximas etapas do desenvolvimento incluem:
+
+- Avaliação técnica pelo profissional indicado pela responsável da loja.
+- Apresentação e validação das funcionalidades com a proprietária.
+- Teste físico da impressão na Epson LQ-1070+.
+- Verificação de compatibilidade da impressora com Windows 11.
+- Avaliação da migração segura dos dados do Space.
+- Estudo da integração com o Bling.
+- Melhorias de interface, desempenho e segurança.
+- Criação e validação de um executável e instalador para Windows.
+
+O objetivo é continuar aperfeiçoando a aplicação até que seja possível avaliar sua utilização na empresa de forma segura, sem comprometer as operações existentes.
+
+## Código e documentação
+
+**Versão desktop experimental:**
+
+[desktop_v021](desktop_v021/)
+
+**Testes e evidências do Módulo 4:**
+
+[modulo4](modulo4/)
+
+**Modelagem e validação do banco de dados:**
+
+[modulo3](modulo3/)
+
+**Aplicação web do Módulo 2:**
+
+[modulo2](modulo2/)
+
+## Status do projeto
+
+**Versão atual:** Desktop experimental v0.2.1.
+
+**Testes:** 14 testes automatizados aprovados e testes manuais realizados no Windows 11.
+
+**Situação:** desenvolvimento acadêmico em andamento, com validação operacional na empresa ainda pendente.
+
