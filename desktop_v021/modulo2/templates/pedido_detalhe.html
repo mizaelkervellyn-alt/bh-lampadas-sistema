@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+<div class="section-head"><div><h2>Pedido nº {{ pedido.id }}</h2><p class="muted">{{ pedido.cliente_nome }} · {{ pedido.criado_em }}</p></div><div class="action-list"><a class="button primary" href="/pedidos/{{ pedido.id }}/imprimir">Imprimir pedido</a><a class="button secondary" data-pedido-id="{{ pedido.id }}" href="/pedidos/{{ pedido.id }}/txt">Salvar pedido TXT</a><a class="button secondary" href="/pedidos">Voltar</a></div></div>
+<p id="status-download-txt" role="status" aria-live="polite" class="help-note"></p>
+<div class="tablewrap"><table><thead><tr><th>Código</th><th>Produto</th><th>Quantidade</th><th>Unitário</th><th>Subtotal</th></tr></thead><tbody>{% for item in itens %}<tr><td>{{ item.codigo_produto }}</td><td>{{ item.descricao_produto }}</td><td>{{ item.quantidade }}</td><td>{{ item.valor_unitario_centavos_fmt }}</td><td>{{ item.subtotal_centavos_fmt }}</td></tr>{% endfor %}</tbody></table></div>
+<div class="totals"><div><span>Total</span><strong>{{ pedido.total_formatado }}</strong></div><div><span>Pagamento</span><strong>{{ 'A prazo' if pedido.pagamento=='prazo' else 'À vista' }}</strong></div>{% if conta %}<div><span>Vencimento</span><strong>{{ conta.vencimento }}</strong></div>{% endif %}</div>
+{% if pedido.observacao %}<p><strong>Observações:</strong> {{ pedido.observacao }}</p>{% endif %}
+<p class="help-note">A visualização e o TXT estão prontos para teste. A impressão física na Epson LQ-1070+ ainda não foi comprovada.</p>
+</section>
+<script src="/static/salvar_txt_desktop.js"></script>
+{% endblock %}

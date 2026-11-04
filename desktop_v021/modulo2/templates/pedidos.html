@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+  <div class="section-head"><div><h2>Pedidos cadastrados</h2><p class="muted">Registre uma venda de demonstração e abra a versão para impressão.</p></div><a class="button primary" href="/pedidos/novo">+ Novo pedido</a></div>
+  <div class="tablewrap"><table><thead><tr><th>Nº</th><th>Cliente</th><th>Data</th><th>Itens</th><th>Pagamento</th><th>Total</th><th>Ações</th></tr></thead><tbody>
+  {% for p in pedidos %}<tr><td>{{ p.id }}</td><td>{{ p.cliente_nome }}</td><td>{{ p.criado_em }}</td><td>{{ p.itens }}</td><td>{{ 'A prazo' if p.pagamento=='prazo' else 'À vista' }}</td><td>{{ p.total_centavos_fmt }}</td><td><a href="/pedidos/{{ p.id }}">Detalhes</a> · <a href="/pedidos/{{ p.id }}/imprimir">Imprimir</a></td></tr>
+  {% else %}<tr><td colspan="7">Nenhum pedido. Cadastre um cliente e um produto antes de criar o primeiro.</td></tr>{% endfor %}
+  </tbody></table></div>
+</section>
+{% endblock %}

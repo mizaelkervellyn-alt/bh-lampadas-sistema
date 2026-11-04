@@ -1,0 +1,27 @@
+BH LAMPADAS DESKTOP EXPERIMENTAL v0.2 — PEDIDOS E INADIMPLENTES
+
+1. Feche completamente a janela da v0.1 antes de iniciar a nova.
+2. Extraia TODA esta pasta para um novo local. Nao execute de dentro do ZIP.
+3. Abra INICIAR_DESKTOP_WINDOWS.bat (internet necessaria na primeira execucao).
+4. Use a MESMA senha de antes: o aplicativo usa o mesmo banco local em
+   %LOCALAPPDATA%\BH_Lampadas_Desktop_Experimental\dados_locais
+   (a migracao acrescenta tabelas sem apagar clientes/produtos existentes).
+5. Cadastre um cliente, um produto com preco positivo e crie um PEDIDO.
+6. Em Pedidos > Detalhes > Imprimir pedido, teste a visualizacao e o botao Imprimir.
+7. Em Contas a receber, registre uma cobranca com vencimento anterior a hoje,
+   confira o alerta de cliente com atraso, depois registre recebimento.
+
+Uma copia do banco existente eh criada automaticamente na pasta backups/ antes
+ da primeira migracao v0.2. Confirme os testes usando SOMENTE DADOS FICTICIOS.
+
+A opcao 'Imprimir pedido' chama window.print() no WebView2. A impressao fisica
+na Epson LQ-1070+ NAO foi validada; se o dialogo nao abrir, use o TXT de teste
+ou abra a pagina de impressao no navegador enquanto a janela estiver rodando.
+O TXT nao controla corte automatico, papel ou comandos ESC/P; depende de teste fisico.
+Este aplicativo nao emite NF-e, nao sincroniza com Bling nem substitui Space.
+
+Para gerar EXE, depois de testar, rode CRIAR_EXE_WINDOWS.bat.
+Nao publique a pasta dados_locais, ambiente virtual, bancos ou senhas no GitHub.
+
+CORRECAO v0.2.1: o botao de TXT agora abre o dialogo nativo Salvar como.
+Veja README_DESKTOP.md para detalhes.

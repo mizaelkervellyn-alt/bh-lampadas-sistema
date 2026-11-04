@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+ <div class="section-head"><div><h2>Lista de clientes</h2><p class="muted">Pesquise por nome ou código do sistema anterior.</p></div><div class="action-list"><a class="button secondary" href="/exportar/clientes">Exportar CSV</a><a class="button primary" href="/clientes/novo">+ Novo cliente</a></div></div>
+ <form action="/clientes" method="get" class="search-form" role="search"><label class="visually-hidden" for="buscar">Pesquisar clientes</label><input id="buscar" type="search" name="q" value="{{ q }}" placeholder="Nome do cliente" data-live="clientes" autocomplete="off" aria-controls="resultados"><button class="button secondary" type="submit">Pesquisar</button></form>
+ <p id="estado-busca" class="fine" aria-live="polite">{{ items|length }} clientes encontrados.</p>
+ <div class="tablewrap"><table><thead><tr><th scope="col">Cliente</th><th scope="col">Tipo</th><th scope="col">Cidade</th><th scope="col">Ação</th></tr></thead><tbody id="resultados" data-kind="clientes">{% for c in items %}<tr><td><strong>{{ c.nome }}</strong> {% if c.inadimplente %}<span class="tag-overdue">Vencido</span>{% endif %}</td><td>{{ c.tipo_pessoa }}</td><td>{{ c.cidade or '—' }}/{{ c.uf or '—' }}</td><td><a href="/clientes/{{ c.id }}/editar">Editar</a></td></tr>{% else %}<tr><td colspan="4">Nenhum cliente encontrado.</td></tr>{% endfor %}</tbody></table></div>
+</section>
+{% endblock %}

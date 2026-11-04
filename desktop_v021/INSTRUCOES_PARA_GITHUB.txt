@@ -1,0 +1,4 @@
+Este pacote E EXPERIMENTAL e nao deve substituir o modulo2 antigo.
+Se quiser publicar para o professor, envie como pasta 'desktop_experimental' no mesmo repositorio.
+NAO envie .venv_desktop, dist, build, arquivos sqlite3 ou senhas locais.
+Primeiro TESTE no Windows com dados ficticios e registre uma captura da janela real.

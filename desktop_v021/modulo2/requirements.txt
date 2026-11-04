@@ -1,0 +1,10 @@
+# Versoes escolhidas para permitir a instalacao com Python 3.8.10 (ambiente de estudo).
+# Python 3.8 esta fora de suporte: preferir Python 3.11+ para uso continuo.
+fastapi==0.115.6
+starlette==0.41.3
+uvicorn==0.30.6
+jinja2==3.1.4
+itsdangerous==2.2.0
+httpx==0.27.2
+pydantic==1.10.21
+pytest==8.3.5

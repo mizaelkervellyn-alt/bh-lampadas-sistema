@@ -1,0 +1,6 @@
+BH Lampadas Desktop v0.2.1 — 04/11/2026
+Testes executados em ambiente Linux de desenvolvimento, com dados ficticios e banco temporario.
+Comando: python -m pytest -q testes_desktop.py testes_fluxos_v02.py testes_download_v021.py modulo2/tests/test_modulo2.py
+RESULTADO: 14 testes aprovados, 0 falhas, 2 avisos de deprecacao de bibliotecas.
+Verificacoes novas: salvar TXT por dialogo simulado, cancelamento, conteudo invalido, referencias JS nas paginas e ALLOW_DOWNLOADS ativo.
+IMPORTANTE: o dialogo de salvamento nativo pywebview precisa ser testado no Windows do usuario; nao ha garantia da impressora fisica.

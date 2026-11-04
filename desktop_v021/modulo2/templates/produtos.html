@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+ <div class="section-head"><div><h2>Lista de produtos</h2><p class="muted">Busque pelo código, nome ou categoria.</p></div><div class="action-list"><a class="button secondary" href="/exportar/produtos">Exportar CSV</a><a class="button primary" href="/produtos/novo">+ Novo produto</a></div></div>
+ <form action="/produtos" method="get" class="search-form" role="search">
+  <label for="buscar" class="visually-hidden">Pesquisar produtos</label>
+  <input id="buscar" type="search" name="q" value="{{ q }}" placeholder="Comece a digitar código ou descrição" autocomplete="off" data-live="produtos" aria-controls="resultados">
+  <button class="button secondary" type="submit">Pesquisar</button>
+ </form>
+ <p id="estado-busca" class="fine" aria-live="polite">{{ items|length }} produtos encontrados.</p>
+ <div class="tablewrap"><table><thead><tr><th scope="col">Produto</th><th scope="col">Categoria</th><th scope="col">Unidade</th><th scope="col">Preço</th><th scope="col">Ação</th></tr></thead>
+ <tbody id="resultados" data-kind="produtos">{% for p in items %}<tr><td><strong>{{ p.descricao }}</strong><small class="secondary-line">{{ p.codigo_space or 'Sem código' }}</small></td><td>{{ p.grupo or '—' }}</td><td>{{ p.unidade }}</td><td>{% if p.preco_venda_centavos is none %}<span class="warning-label">Revisar preço</span>{% else %}R$ {{ '%.2f'|format(p.preco_venda_centavos/100)|replace('.',',') }}{% endif %}</td><td><a href="/produtos/{{ p.id }}/editar">Editar</a></td></tr>{% else %}<tr><td colspan="5">Nenhum produto encontrado.</td></tr>{% endfor %}</tbody>
+ </table></div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-panel">
+<h2>Novo pedido de demonstração</h2><p class="muted">Escolha um cliente e até 6 produtos. Os preços vêm dos cadastros e ficam registrados no pedido.</p>
+{% if not clientes or not produtos %}<div class="help-note">Antes de criar um pedido, cadastre pelo menos um <a href="/clientes/novo">cliente</a> e um <a href="/produtos/novo">produto com preço maior que zero</a>.</div>{% endif %}
+<form method="post" action="/pedidos/salvar" class="form-stack">
+<input type="hidden" name="csrf" value="{{ csrf }}">
+<div class="field"><label for="cli">Cliente *</label><select id="cli" name="cliente_id" required><option value="">Selecione</option>{% for c in clientes %}<option value="{{ c.id }}" {% if data.get('cliente_id') == c.id|string %}selected{% endif %}>{{ c.nome }}</option>{% endfor %}</select></div>
+<h2>Itens</h2><div class="order-lines">
+{% for i in range(1,7) %}<div class="order-line"><div class="field"><label for="p{{ i }}">Produto {{ i }}</label><select id="p{{ i }}" name="produto_{{ i }}"><option value="">Nenhum</option>{% for p in produtos %}<option value="{{ p.id }}" {% if data.get('produto_' ~ i) == p.id|string %}selected{% endif %}>{{ p.descricao }} — {{ p.codigo_space or 'Sem código' }}{% if p.preco_venda_centavos %} (R$ {{ ('%.2f' % (p.preco_venda_centavos / 100))|replace('.', ',') }}){% else %} (sem preço){% endif %}</option>{% endfor %}</select></div><div class="field"><label for="q{{ i }}">Quantidade</label><input type="number" id="q{{ i }}" name="quantidade_{{ i }}" min="1" max="9999" value="{{ data.get('quantidade_' ~ i,'') }}" placeholder="Ex.: 2"></div></div>{% endfor %}
+</div>
+<div class="field"><label for="pagamento">Pagamento *</label><select name="pagamento" id="pagamento" required><option value="avista" {% if data.get('pagamento')=='avista' %}selected{% endif %}>À vista</option><option value="prazo" {% if data.get('pagamento')=='prazo' %}selected{% endif %}>A prazo (gera conta a receber)</option></select></div>
+<div class="field"><label for="venc">Vencimento (obrigatório se a prazo)</label><input type="date" id="venc" name="vencimento" value="{{ data.get('vencimento','') }}"></div>
+<div class="field"><label for="observacao">Observações</label><textarea id="observacao" name="observacao" rows="2" maxlength="300">{{ data.get('observacao','') }}</textarea></div>
+<div class="help-note">Os valores são calculados pelo preço cadastrado. Não há emissão de nota fiscal, baixa de estoque ou integração com o Bling.</div>
+<div class="actions"><button class="button primary" type="submit">Salvar pedido</button><a class="button secondary" href="/pedidos">Cancelar</a></div>
+</form>
+</section>
+{% endblock %}

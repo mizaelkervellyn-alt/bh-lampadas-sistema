@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="metrics" aria-label="Indicadores financeiros de demonstração">
+  <div class="stat"><span>Clientes com cobrança vencida</span><strong>{{ resumo.inadimplentes }}</strong><small>Saldo vencido e não quitado</small></div>
+  <div class="stat"><span>Saldo vencido</span><strong style="font-size:23px">{{ resumo.vencido_centavos_fmt }}</strong><small>Total em atraso</small></div>
+  <div class="stat"><span>Total a receber</span><strong style="font-size:23px">{{ resumo.aberto_centavos_fmt }}</strong><small>Inclui valores a vencer</small></div>
+</section>
+<section class="panel"><div class="section-head"><div><h2>Controle de cobranças</h2><p class="muted">Uma conta é considerada vencida quando a data passou e ainda há saldo pendente.</p></div><div class="action-list"><a class="button primary" href="/financeiro/nova">+ Nova cobrança</a><a class="button secondary" href="/financeiro">Todas</a><a class="button secondary" href="/financeiro?filtro=vencidas">Somente vencidas</a></div></div>
+<div class="tablewrap"><table><thead><tr><th>Cliente</th><th>Descrição</th><th>Vencimento</th><th>Valor</th><th>Saldo</th><th>Situação</th><th>Registrar recebimento</th></tr></thead><tbody>
+{% for item in itens %}<tr><td><strong>{{ item.cliente_nome }}</strong></td><td>{{ item.descricao }}</td><td>{{ item.vencimento }}</td><td>{{ item.valor_centavos_fmt }}</td><td>{{ item.saldo_centavos_fmt }}</td><td>{% if item.vencida %}<span class="tag-overdue">Vencida</span>{% elif item.saldo_centavos==0 %}<span class="tag-ok">Quitada</span>{% else %}<span class="tag-open">Em aberto</span>{% endif %}</td><td>{% if item.saldo_centavos > 0 %}<form class="small-form" method="post" action="/financeiro/{{ item.id }}/receber"><input type="hidden" name="csrf" value="{{ csrf }}"><label class="visually-hidden" for="rec{{ item.id }}">Recebimento em reais</label><input id="rec{{ item.id }}" name="valor" required placeholder="Ex.: 30,00" aria-label="Valor recebido"><button class="button secondary" type="submit">Registrar</button></form>{% else %}—{% endif %}</td></tr>{% else %}<tr><td colspan="7">Nenhuma cobrança encontrada. Cadastre uma cobrança fictícia ou um pedido a prazo.</td></tr>{% endfor %}
+</tbody></table></div><p class="help-note">Simulação acadêmica. Não gera boletos, cobrança automática ou integração bancária; pagamentos são lançados manualmente.</p></section>
+{% endblock %}
